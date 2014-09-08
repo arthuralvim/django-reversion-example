@@ -1,0 +1,26 @@
+{% extends "app1/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<h2>List</h2>
+<a href="{% url 'app1:ma_create' %}">{% trans "Create" %}</a>
+
+<table>
+    <tbody>
+        {% for object in object_list %}
+            <tr>
+                <td><a href="{% url 'app1:ma_detail' object.pk %}">{{ object }}</a></td>
+                <td><a href="{% url 'app1:ma_update' object.pk %}">update</a></td>
+                <td><a href="{% url 'app1:ma_history' object.pk %}">history</a></td>
+                <td><a href="{% url 'app1:ma_delete' object.pk %}">delete</a></td>
+            </tr>
+        {% empty %}
+            {% trans "Nothings here!" %}
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'app1:ma_list' %}">{% trans "Back" %}</a>
+
+{% endblock content %}

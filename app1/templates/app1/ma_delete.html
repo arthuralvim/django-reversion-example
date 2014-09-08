@@ -1,0 +1,16 @@
+{% extends "app1/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<h2>Delete</h2>
+
+<p>{% blocktrans with escaped_object=object %}Are you sure you want to delete the "{{ escaped_object }}"? {% endblocktrans %}</p>
+
+<form action="." method="post">
+    {% csrf_token %}
+    <input type="submit" value="{% trans "Yes, I am sure" %}"/>
+</form>
+
+<a href="{% url 'app1:ma_list' %}">{% trans "Back" %}</a>
+{% endblock content %}

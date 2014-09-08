@@ -1,0 +1,13 @@
+{% extends "app1/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h2>Detail</h2>
+
+<p>{{ object }}</p>
+
+<a href="{% url 'app1:ma_list' %}">{% trans "Back" %}</a>
+
+{% endblock content %}

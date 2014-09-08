@@ -1,0 +1,16 @@
+{% extends "app1/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h2>Create</h2>
+
+<form action="." method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="{% trans "Save" %}"/>
+</form>
+
+<a href="{% url 'app1:ma_list' %}">{% trans "Back" %}</a>
+{% endblock content %}

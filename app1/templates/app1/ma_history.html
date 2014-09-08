@@ -1,0 +1,44 @@
+{% extends "app1/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<h2>History</h2>
+
+{% if version_list %}
+    <table>
+        <thead>
+            <tr>
+                <th>{% trans 'Date/time' %}</th>
+                <th>{% trans 'User' %}</th>
+                <th>{% trans 'Comment' %}</th>
+                <th>{% trans 'Revert' %}</th>
+                <th>{% trans 'Data' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ver in version_list %}
+                <tr>
+                    <th scope="row">{{ ver.revision.date_created }}</th>
+                    <td>
+                        {% if ver.revision.user %}
+                            {{ ver.revision.user.get_username }}
+                            {% if ver.revision.user.get_full_name %} ({{ ver.revision.user.get_full_name }}){% endif %}
+                        {% else %}
+                            &mdash;
+                        {% endif %}
+                    </td>
+                    <td>{{ ver.revision.comment|linebreaksbr|default:"" }}</td>
+                    <td><a href="{% url 'app1:ma_revert' obj_pk ver.pk %}">revert</a></td>
+                    <td>{{ ver.field_dict }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>{% trans "This object doesn't have a change history." %}</p>
+{% endif %}
+
+<a href="{% url 'app1:ma_list' %}">{% trans "Back" %}</a>
+
+{% endblock content %}

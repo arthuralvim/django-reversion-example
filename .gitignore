@@ -41,6 +41,7 @@ coverage.xml
 .mr.developer.cfg
 .project
 .pydevproject
+.DS_Store
 
 # Rope
 .ropeproject
@@ -48,6 +49,7 @@ coverage.xml
 # Django stuff:
 *.log
 *.pot
+*.sqlite3
 
 # Sphinx documentation
 docs/_build/
